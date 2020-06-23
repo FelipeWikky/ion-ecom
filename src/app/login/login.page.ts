@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { User } from './../../domain/model/user';
@@ -28,6 +28,10 @@ export class LoginPage {
         responseType: 'text',
       }
     ).subscribe((success: string) => {
+      const extras:NavigationExtras = {
+        state:success as Object
+      }
+      this.route.navigate(['products'], extras);
 
       },
         (error: HttpErrorResponse) => {
