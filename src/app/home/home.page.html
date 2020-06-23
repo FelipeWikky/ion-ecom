@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
     <ion-toolbar color="primary">
         <ion-title>
-            Blank
+            E-commerce
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -26,12 +26,14 @@
         <ion-card>
             <ion-card-content>
                 <ion-button (click)="gotoLogin()" expand="block">
+                    <ion-icon slot="start" name="log-in-outline"></ion-icon>
                     Login
                 </ion-button>
             </ion-card-content>
 
             <ion-card-content>
                 <ion-button color="secondary" (click)="gotoRegister()" expand="block">
+                    <ion-icon slot="start" name="log-out-outline"></ion-icon>
                     Cadastrar
                 </ion-button>
             </ion-card-content>
