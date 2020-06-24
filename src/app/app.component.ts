@@ -18,7 +18,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private http:HttpClient
+    private http:HttpClient,
   ) {
     this.user = new User();
     this.initializeApp();

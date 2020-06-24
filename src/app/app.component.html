@@ -1,7 +1,7 @@
 <ion-app>
     <ion-menu menuId="main-menu" contentId="main">
         <ion-header>
-            <ion-toolbar>
+            <ion-toolbar color="primary">
                 <ion-buttons slot="start">
                     <ion-menu-button menu="main-menu"></ion-menu-button>
                 </ion-buttons>
@@ -22,22 +22,36 @@
 
                 <ion-menu-toggle *ngIf="user.isLogged()">
                     <ion-item routerLink="/products">
-                        <ion-icon name="mail" slot="start"></ion-icon>
+                        <ion-icon name="list-circle-outline" slot="start"></ion-icon>
                         <ion-label>Produtos</ion-label>
                     </ion-item>
                 </ion-menu-toggle>
 
-                <ion-menu-toggle>
+                <ion-menu-toggle *ngIf="user.isLogged()">
+                    <ion-item routerLink="/cart">
+                        <ion-icon name="cart-outline" slot="start"></ion-icon>
+                        <ion-label>Carrinho</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+
+                <ion-menu-toggle *ngIf="!user.isLogged()">
                     <ion-item routerLink="/login">
                         <ion-icon name="log-in-outline" slot="start"></ion-icon>
                         <ion-label>Login</ion-label>
                     </ion-item>
                 </ion-menu-toggle>
 
-                <ion-menu-toggle>
+                <ion-menu-toggle *ngIf="!user.isLogged()">
                     <ion-item routerLink="/register">
                         <ion-icon name="person-add-outline" slot="start"></ion-icon>
                         <ion-label>Cadastro</ion-label>
+                    </ion-item>
+                </ion-menu-toggle>
+
+                <ion-menu-toggle *ngIf="user.isLogged()">
+                    <ion-item (click)="user.signOut()">
+                        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+                        <ion-label>Sair</ion-label>
                     </ion-item>
                 </ion-menu-toggle>
 

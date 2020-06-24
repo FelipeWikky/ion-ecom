@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorage } from './../../domain/services/storage';
 
 @Component({
   selector: 'app-main',
@@ -6,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
+  public token:string;
 
   constructor(
+    private storage:LocalStorage
   ) { }
 
-  ngOnInit() {
-
+  async ngOnInit() {
+    this.token = await this.storage.getToken();
   }
 
 }

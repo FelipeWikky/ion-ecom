@@ -3,6 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { User } from './../../domain/model/user';
+import { LocalStorage } from './../../domain/services/storage';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,12 @@ export class LoginPage {
   constructor(
     private route: Router,
     private http: HttpClient,
+    private storage:LocalStorage,
   ) {
     this.user = new User();
   }
 
-  public handleLogin(): void {
+  public async handleLogin(): Promise<void> {
     console.log('login request');
     
     this.http.post(`http://example-ecommerce.herokuapp.com/user/login`, {
@@ -29,10 +31,11 @@ export class LoginPage {
       , {
         responseType: 'text',
       }
-    ).subscribe((success: string) => {
+    ).subscribe(async(success: string) => {
       const extras:NavigationExtras = {
         state:success as Object
       }
+      await this.storage.setToken(success);
       this.route.navigate(['main'], extras);
       console.log('login finally');
 

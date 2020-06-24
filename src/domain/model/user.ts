@@ -1,5 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import Constant from './Constant';
+import {Constant} from './Constant';
+import { LocalStorage } from './../services/storage';
+import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 export class User {
   name:string;
@@ -10,35 +13,27 @@ export class User {
   userPassword:string;
   userPasswordConfirm?:string;
 
-  constructor(){
+  private logged = true;
 
-  }
-
-  private logged = false;
-
-
-  public signIn(http:HttpClient):void{
-    // var token = "";
-    // http.post(`http://example-ecommerce.herokuapp.com/user/login`,{
-    //   login:this.email,
-    //   password:this.userPassword
-    // }, {responseType:'text'})
-    //   .subscribe(
-    //     (success:string) => {
-    //       token = success;
-    //     },
-    //     (error:HttpErrorResponse) => console.log(error)
-    //   );
-    // return token;
-  }
-
-  public isLogged():boolean{
+  public async signIn():Promise<void>{
     this.logged = true;
-    return this.logged;
   }
 
-  public logout():boolean {
+  public signUp():void {
+
+  }
+
+  public signOut():boolean {
     this.logged = false;
     return this.logged;
   }
+
+  public async isLogged():Promise<boolean>{
+    // const token = await this.storage.get(Constant.STORAGE_TOKEN_KEY);
+    // if (token) {
+    //   return true;
+    // }
+    return false;
+  }
+
 }

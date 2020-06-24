@@ -14,7 +14,7 @@ export class RegisterPage {
 
   constructor(
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
   ) {
     this.user = new User();
   }
