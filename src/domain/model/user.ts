@@ -13,27 +13,22 @@ export class User {
   userPassword:string;
   userPasswordConfirm?:string;
 
-  private logged = true;
+  private logged = false;
 
-  public async signIn():Promise<void>{
+  public signIn(token:string):void {
     this.logged = true;
   }
 
   public signUp():void {
 
-  }
+  }   
 
-  public signOut():boolean {
+  public signOut():void {
     this.logged = false;
-    return this.logged;
   }
 
-  public async isLogged():Promise<boolean>{
-    // const token = await this.storage.get(Constant.STORAGE_TOKEN_KEY);
-    // if (token) {
-    //   return true;
-    // }
-    return false;
+  public isLogged():boolean {
+    return this.logged;
   }
 
 }

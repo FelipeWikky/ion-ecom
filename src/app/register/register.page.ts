@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from './../../domain/model/user';
+import { LocalStorage } from './../../domain/services/storage';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ export class RegisterPage {
   constructor(
     private router: Router,
     private http: HttpClient,
+    private storage:LocalStorage,
   ) {
     this.user = new User();
   }
@@ -41,6 +43,10 @@ export class RegisterPage {
     this.http.post(`http://example-ecommerce.herokuapp.com/user/customer/add`, this.user, { responseType: 'text'})
       .subscribe(
         (response: string) => {
+          const extras:NavigationExtras = {
+            state:response as any
+          }
+          this.router.navigate(['main'], extras);
           console.log(response);
         },
         (error: HttpErrorResponse) => {

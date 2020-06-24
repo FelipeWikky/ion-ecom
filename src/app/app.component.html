@@ -14,42 +14,42 @@
             <ion-list>
 
                 <ion-menu-toggle>
-                    <ion-item [routerLink]="user.isLogged() ? ['/main'] : ['/home']">
+                    <ion-item [routerLink]="logged ? ['/main'] : ['/home']">
                         <ion-icon name="home-outline" slot="start"></ion-icon>
                         <ion-label>Início</ion-label>
                     </ion-item>
                 </ion-menu-toggle>
 
-                <ion-menu-toggle *ngIf="user.isLogged()">
+                <ion-menu-toggle *ngIf="logged">
                     <ion-item routerLink="/products">
                         <ion-icon name="list-circle-outline" slot="start"></ion-icon>
                         <ion-label>Produtos</ion-label>
                     </ion-item>
                 </ion-menu-toggle>
 
-                <ion-menu-toggle *ngIf="user.isLogged()">
+                <ion-menu-toggle *ngIf="logged">
                     <ion-item routerLink="/cart">
                         <ion-icon name="cart-outline" slot="start"></ion-icon>
                         <ion-label>Carrinho</ion-label>
                     </ion-item>
                 </ion-menu-toggle>
 
-                <ion-menu-toggle *ngIf="!user.isLogged()">
+                <ion-menu-toggle *ngIf="!logged">
                     <ion-item routerLink="/login">
                         <ion-icon name="log-in-outline" slot="start"></ion-icon>
                         <ion-label>Login</ion-label>
                     </ion-item>
                 </ion-menu-toggle>
 
-                <ion-menu-toggle *ngIf="!user.isLogged()">
+                <ion-menu-toggle *ngIf="!logged">
                     <ion-item routerLink="/register">
                         <ion-icon name="person-add-outline" slot="start"></ion-icon>
                         <ion-label>Cadastro</ion-label>
                     </ion-item>
                 </ion-menu-toggle>
 
-                <ion-menu-toggle *ngIf="user.isLogged()">
-                    <ion-item (click)="user.signOut()">
+                <ion-menu-toggle *ngIf="logged">
+                    <ion-item (click)="logout()" routerLink="/home">
                         <ion-icon name="log-out-outline" slot="start"></ion-icon>
                         <ion-label>Sair</ion-label>
                     </ion-item>

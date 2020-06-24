@@ -27,6 +27,15 @@ export class LocalStorage {
       console.log(err);
     }
   }
+  public async removeToken():Promise<void> {
+    console.log('remove token');
+    try {
+      await this.storage.remove(Constant.STORAGE_TOKEN_KEY);
+      
+    } catch (err) {
+      console.log(err);
+    } 
+  }
 
   public async getCart(): Promise<any[]> {
     const cart = await this.storage.get(Constant.STORAGE_CART_KEY);

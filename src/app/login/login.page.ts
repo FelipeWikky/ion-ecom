@@ -37,7 +37,7 @@ export class LoginPage {
       }
       await this.storage.setToken(success);
       this.route.navigate(['main'], extras);
-      console.log('login finally');
+      // console.log('login finally');
 
       },
         (error: HttpErrorResponse) => {
