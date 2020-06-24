@@ -1,7 +1,16 @@
-<ion-header>
+<!-- <ion-header>
     <ion-toolbar>
         <ion-buttons>
             <ion-back-button text=""></ion-back-button>
+        </ion-buttons>
+        <ion-title>Produtos ({{products.length}})</ion-title>
+    </ion-toolbar>
+</ion-header> -->
+
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
         </ion-buttons>
         <ion-title>Produtos ({{products.length}})</ion-title>
     </ion-toolbar>
@@ -23,17 +32,15 @@
                         <ion-icon *ngIf="!p.opened" slot="icon-only" slot="end" color="dark" name="arrow-down-outline"></ion-icon>
                         <ion-icon *ngIf="p.opened" slot="icon-only" slot="end" color="dark" name="arrow-up-outline"></ion-icon>
                     </ion-button>
-
-                    <ion-card-content *ngIf="p.opened">
-                        <ion-label>Produto: <strong>{{p.name}}</strong></ion-label>
-                        <br>
-                        <ion-label>Preço: <strong>${{p.price.toFixed(2)}}</strong></ion-label>
-                        <br>
-                        <ion-label>Qtd. Disponível: <strong>{{p.amount}} unidades</strong></ion-label>
-                        <br>
-                    </ion-card-content>
-
                 </ion-card-title>
+                <ion-card-content *ngIf="p.opened">
+                    <ion-label>Produto: <strong>{{p.name}}</strong></ion-label>
+                    <br>
+                    <ion-label>Preço: <strong>${{p.price.toFixed(2)}}</strong></ion-label>
+                    <br>
+                    <ion-label>Qtd. Disponível: <strong>{{p.amount}} unidades</strong></ion-label>
+                    <br>
+                </ion-card-content>
 
             </ion-card-header>
         </ion-card>

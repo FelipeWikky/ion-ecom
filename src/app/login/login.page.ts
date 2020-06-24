@@ -20,6 +20,8 @@ export class LoginPage {
   }
 
   public handleLogin(): void {
+    console.log('login request');
+    
     this.http.post(`http://example-ecommerce.herokuapp.com/user/login`, {
       login: this.user.email,
       password: this.user.userPassword
@@ -31,7 +33,8 @@ export class LoginPage {
       const extras:NavigationExtras = {
         state:success as Object
       }
-      this.route.navigate(['products'], extras);
+      this.route.navigate(['main'], extras);
+      console.log('login finally');
 
       },
         (error: HttpErrorResponse) => {

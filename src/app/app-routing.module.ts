@@ -23,6 +23,47 @@ const routes: Routes = [
     path: 'products',
     loadChildren: () => import('./products/products.module').then( m => m.ProductsPageModule)
   },
+  {
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
+  },
+  {
+    path: 'main',
+    children:[
+      {
+        path:'',
+        loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
+      },
+      {
+        path: 'products',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./products/products.module').then(m => m.ProductsPageModule)
+          }
+        ]
+      },
+      {
+        path: 'login',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+          }
+        ]
+      },
+      {
+        path: 'register',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
+          }
+        ]
+      }
+    ]
+    
+  },
 ];
 
 @NgModule({
