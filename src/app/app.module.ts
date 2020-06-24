@@ -12,11 +12,13 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { GlobalService } from './../domain/services/GlobalService';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, 
+  BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
     HttpClientModule, 
@@ -30,6 +32,7 @@ providers: [
     StatusBar,
     SplashScreen,
     MenuController,
+    GlobalService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

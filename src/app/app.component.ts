@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import { LocalStorage } from './../domain/services/storage';
 import { Router } from '@angular/router';
 
+import { GlobalService } from './../domain/services/GlobalService';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -24,6 +26,7 @@ export class AppComponent implements OnInit {
     private http:HttpClient,
     private router:Router,
     private storage:LocalStorage,
+    public global:GlobalService
   ) {
     this.user = new User();
     this.initializeApp();
@@ -38,8 +41,8 @@ export class AppComponent implements OnInit {
   }
 
   async logout():Promise<void> {
-    this.logged = false;
-    await this.storage.removeToken();//.then(success => this.router.navigate(['home']));
+    this.global.loginState = false;
+    await this.storage.removeToken();
   }
 
   initializeApp() {
@@ -52,7 +55,8 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     const token:string = await this.storage.getToken();
     if (token && token != "") {
-      this.logged = true;
+      this.global.login(token);
+      this.router.navigate(['main'], {state:token as any});
     }
   }
 }
