@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <!-- <ion-buttons>
+          <ion-back-button text=""></ion-back-button>
+      </ion-buttons> -->
+        <ion-buttons slot="start">
+            <ion-menu-button menu="main-menu"></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Carrinho</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="clearCart()">
+                <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+            <ion-card-subtitle>
+                <ion-text color="primary">
+                    Itens do seu Carrinho
+                </ion-text>
+            </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content *ngFor="let item of cart.items">
+            <ion-item>
+                <ion-label>Produto: </ion-label>
+                <ion-label>
+                    <small>
+                        <strong>{{item.product.name}}</strong>
+                    </small>
+                </ion-label>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Valor: </ion-label>
+                <ion-label>
+                    <small>R$ {{item.product.price}}</small>
+                </ion-label>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Quant.: </ion-label>
+                <ion-label>
+                    <small>{{item.buyQuantity}}</small>
+                </ion-label>
+            </ion-item>
+
+            <ion-item>
+                <ion-label (click)="removeToCart(item.id)">
+                    <ion-text color="danger">
+                        <small>
+                            <p style="align-self: center; text-align: center;">Excluir do Carrinho</p>
+                        </small>
+                    </ion-text>
+                </ion-label>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
   }
 
   async logout():Promise<void> {
-    this.global.loginState = false;
+    this.global.logout();
     await this.storage.removeToken();
   }
 

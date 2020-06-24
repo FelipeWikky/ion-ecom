@@ -40,6 +40,11 @@
                     <br>
                     <ion-label>Qtd. Disponível: <strong>{{p.amount}} unidades</strong></ion-label>
                     <br>
+                    <ion-text color="primary" (click)="addToCart(p.id)">
+                        <small>Adicionar ao carrinho</small>
+                    </ion-text>
+
+                    <br>
                 </ion-card-content>
 
             </ion-card-header>
