@@ -6,7 +6,20 @@ export class GlobalService {
   private token:string = "";
   private email:string = "";
 
-  public login(token:string) {
+  public async login(token:string) {
+    // const p = new Promise((resolve, reject) => {
+    //   try {
+    //     resolve(() => {
+    //       this.loginState = true;
+    //       this.token = token;
+    //       console.log('login ' + this.token);  
+    //     })
+    //   } catch (e) {
+    //     reject(e)
+    //   }
+    // });
+    // p.then(() => true);
+
     this.loginState = true;
     this.token = token;
   }
@@ -19,7 +32,7 @@ export class GlobalService {
     return this.loginState
   }
 
-  public getToken():string {
+  public async getToken() {
     return this.token;
   }
 

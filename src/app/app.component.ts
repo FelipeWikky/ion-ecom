@@ -55,8 +55,8 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
     const token:string = await this.storage.getToken();
     if (token && token != "") {
-      this.global.login(token);
-      this.router.navigate(['main'], {state:token as any});
+      await this.global.login(token);
+      this.router.navigate(['main'], {state:{token:token}});
     }
   }
 }

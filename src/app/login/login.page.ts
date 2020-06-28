@@ -13,6 +13,8 @@ import { GlobalService } from './../../domain/services/GlobalService';
 })
 export class LoginPage {
   public user: User;
+  public disabled:boolean = false;
+  public errors:Array<string> = [];
 
   constructor(
     private route: Router,
@@ -25,7 +27,21 @@ export class LoginPage {
 
   public async handleLogin(): Promise<void> {
     console.log('login request');
-    
+    this.errors = [];
+    this.disabled = true;
+
+    if (!this.user.email) {
+      this.errors.push('O campo E-mail é obrigatório');
+    }
+    if (!this.user.userPassword) {
+      this.errors.push('O campo Senha é obrigatório');
+    }
+
+    if (this.errors.length > 0) {
+      this.disabled = false;
+      return;
+    }
+
     this.http.post(`http://example-ecommerce.herokuapp.com/user/login`, {
       login: this.user.email,
       password: this.user.userPassword
@@ -38,14 +54,18 @@ export class LoginPage {
         state:success as any
       }
       await this.storage.setToken(success);
-      // this.global.loginState = true;
       this.global.login(success);
       this.route.navigate(['main'], extras);
       },
         (error: HttpErrorResponse) => {
           console.log('---error---');
-          console.log(error);
+          console.log(error.error);
+          switch(error.error) {
+            case 'Bad credentials':
+              this.errors.push('E-mail ou Senha inválido(s)');
+          }
         });
+    this.disabled = false;
   }
 
 }

@@ -33,10 +33,16 @@
                     </ion-label>
                     <ion-input [(ngModel)]="user.userPassword" type="password" autocapitalize="none" autocomplete="none"></ion-input>
                 </ion-item>
+
+                <ion-item *ngFor="let error of errors">
+                    <ion-label color="danger">
+                        <small>{{error}}</small>
+                    </ion-label>
+                </ion-item>
             </ion-card-content>
 
             <ion-card-content>
-                <ion-button (click)="handleLogin()" expand="block" color="success">
+                <ion-button [disabled]="disabled" (click)="handleLogin()" expand="block" color="success">
                     <ion-icon slot="start" name="log-in-outline"></ion-icon>
                     Fazer Login
                 </ion-button>
