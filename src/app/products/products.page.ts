@@ -35,6 +35,7 @@ export class ProductsPage implements OnInit {
     }
     try {
       await this.storage.addItemToCart(item);
+      this.products.filter(p => p.id == id)[0].opened = false;
       alert(`${this.products.filter(p => p.id == id)[0].name} adicionado ao Carrinho.`);
     } catch(err) {
       console.log(err);
@@ -42,9 +43,11 @@ export class ProductsPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log('request initiated');
     this.http.get(`http://example-ecommerce.herokuapp.com/product/list`)
       .subscribe(
         (success: Product[]) => {
+          console.log('products requested');
           this.products = success;
         },
         (error: HttpErrorResponse) => {
