@@ -14,33 +14,33 @@ export class CartPage implements OnInit {
   public cart = cart;
 
   constructor(
-    private route:Router,
-    private http:HttpClient,
-    public global:GlobalService,
-    private storage:LocalStorage,
+    private route: Router,
+    private http: HttpClient,
+    public global: GlobalService,
+    private storage: LocalStorage,
   ) { }
 
-  async ionViewDidEnter(){
+  async ionViewDidEnter() {
     this.loadCart();
   }
 
-  public async loadCart(){
+  public async loadCart() {
     try {
       this.cart = await this.storage.getCart();
       console.log(this.cart);
-    } catch(err) {
+    } catch (err) {
       console.log('loadCart');
       console.log(err);
-    } 
+    }
   }
 
-  public async removeToCart(itemId:number){
+  public async removeToCart(itemId: number) {
     await this.storage.removeItemToCart(itemId);
     alert('Item excluído do carrinho.');
     await this.loadCart();
   }
 
-  public async clearCart(){
+  public async clearCart() {
     await this.storage.clearCart();
     switch (this.cart.items.length) {
       case 0:
@@ -57,7 +57,7 @@ export class CartPage implements OnInit {
     // await this.loadCart();
   }
 
-  public alert(product:string){
+  public alert(product: string) {
     alert(product);
   }
 

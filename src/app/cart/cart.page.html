@@ -21,7 +21,7 @@
         <ion-card-header>
             <ion-card-subtitle>
                 <ion-text color="primary">
-                    Itens do seu Carrinho
+                    {{cart.items.length > 0 ? 'Itens do seu Carrinho' : 'Não há itens no Carrinho'}}
                 </ion-text>
             </ion-card-subtitle>
         </ion-card-header>
